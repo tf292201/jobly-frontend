@@ -1,43 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, TextField, Grid, Paper, Typography } from '@mui/material';
 import JoblyApi from './JoblyApi';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
 const Profile = () => {
-  const { user, setUserFromToken } = useAuth();
-  const [formData, setFormData] = useState(null); // Use null initially
+  const { user } = useAuth();
+  const [formData, setFormData] = useState({
+    username: user?.username || '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
   const [updateMessage, setUpdateMessage] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const fetchedUser = await JoblyApi.getUser(user?.username);
-        setFormData({
-          username: fetchedUser.username || '',
-          firstName: fetchedUser.firstName || '',
-          lastName: fetchedUser.lastName || '',
-          email: fetchedUser.email || '',
-        });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    const token = localStorage.getItem('token');
-    if (token) {
-      setUserFromToken(token);
-      fetchUserData();
-    } else {
-      navigate('/login');
-    }
-  }, [setUserFromToken, navigate, user?.username]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!formData) return; // Return if formData is null or not yet initialized
       await JoblyApi.updateUser(user.username, formData);
       setUpdateMessage('Update successful');
     } catch (error) {
@@ -52,10 +33,6 @@ const Profile = () => {
       [name]: value,
     }));
   };
-
-  if (!formData) {
-    return null; // Render nothing until user data is fetched
-  }
 
   return (
     <Paper style={{ padding: '20px', maxWidth: '400px', margin: 'auto', marginTop: '20px' }}>
@@ -74,6 +51,19 @@ const Profile = () => {
               name="username"
               value={formData.username}
               disabled
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
