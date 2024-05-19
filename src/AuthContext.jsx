@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:3001/auth/token', {
+      const response = await axios.post('https://jobly-backend-6ucl.onrender.com/auth/token', {
         username,
         password,
       });
