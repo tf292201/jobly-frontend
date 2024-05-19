@@ -14,6 +14,7 @@ const Profile = () => {
     email: '',
   });
   const [updateMessage, setUpdateMessage] = useState('');
+  const [isFetching, setIsFetching] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,11 +27,12 @@ const Profile = () => {
           const fetchedUser = await JoblyApi.getUser(user?.username);
           setFormData({
             username: fetchedUser.username || '',
-            password: fetchedUser.password || '',
+            password: '', // Do not fetch or display the password
             firstName: fetchedUser.firstName || '',
             lastName: fetchedUser.lastName || '',
             email: fetchedUser.email || '',
           });
+          setIsFetching(false);
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -39,7 +41,7 @@ const Profile = () => {
       }
     };
     authenticateUser();
-  }, [setUserFromToken, navigate, user]);
+  }, [setUserFromToken, navigate, user?.username]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,6 +62,10 @@ const Profile = () => {
       console.error('Error updating profile:', error);
     }
   };
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Paper style={{ padding: '20px', maxWidth: '400px', margin: 'auto', marginTop: '20px' }}>
