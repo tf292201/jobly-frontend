@@ -34,8 +34,8 @@ const JobCard = ({ job }) => {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {job.companyName}
         </Typography>
-        <Typography variant="body2">{job.salary}</Typography>
-        <Typography variant="body2">{job.equity}</Typography>
+        <Typography variant="body2">Salary:{job.salary}</Typography>
+        <Typography variant="body2">Equity:{job.equity}</Typography>
         {applied ? (
           <Button variant="contained" disabled>
             Applied
