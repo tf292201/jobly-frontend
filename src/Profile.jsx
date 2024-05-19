@@ -19,7 +19,8 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await JoblyApi.updateUser(formData);
+      const { username, ...userData } = formData; // Extract username and user data
+      await JoblyApi.updateUser(username, userData); // Pass username and user data separately
       setUpdateMessage('Update successful');
     } catch (error) {
       console.error('Error updating profile:', error);
