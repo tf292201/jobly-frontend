@@ -32,8 +32,10 @@ const Profile = () => {
         navigate('/login');
       }
     };
+
+    // Run only once when the component mounts
     authenticateUser();
-  }, [setUserFromToken, navigate, user?.username]);
+  }, []); // Empty dependency array ensures the effect is only run once
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +67,7 @@ const Profile = () => {
                 label="Username"
                 name="username"
                 value={formData.username}
-                disabled
+                disabled // Only the username field is disabled
               />
             </Grid>
             <Grid item xs={12}>
@@ -78,7 +80,6 @@ const Profile = () => {
                 type="password"
                 name="password"
                 value={formData.password}
-                disabled // Password field should not be editable
               />
             </Grid>
             <Grid item xs={12}>
@@ -90,7 +91,6 @@ const Profile = () => {
                 label="First Name"
                 name="firstName"
                 value={formData.firstName}
-                disabled // Disable until form is submitted
               />
             </Grid>
             <Grid item xs={12}>
@@ -102,7 +102,6 @@ const Profile = () => {
                 label="Last Name"
                 name="lastName"
                 value={formData.lastName}
-                disabled // Disable until form is submitted
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,7 +113,6 @@ const Profile = () => {
                 label="Email"
                 name="email"
                 value={formData.email}
-                disabled // Disable until form is submitted
               />
             </Grid>
           </Grid>
