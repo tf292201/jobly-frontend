@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://jobly-backend-6ucl.onrender.com";
 
 /** API Class.
  *
