@@ -4,13 +4,19 @@ import CompanyCard from './CompanyCard';
 import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+// CompanyList component
+// This component displays a list of companies
+// It also includes a search input to filter companies by name
 const CompanyList = () => {
   const { user, setUserFromToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
+
+//  Protect the route by checking if user is authenticated
+//  If user is not authenticated, redirect to login
   useEffect(() => {
     const authenticateUser = async () => {
-      if (!user) { // Check if user is already authenticated
+      if (!user) { 
         const token = localStorage.getItem('token');
         if (token) {
           setUserFromToken(token); // Set user from token only if token exists
@@ -20,7 +26,7 @@ const CompanyList = () => {
       }
     };
     authenticateUser();
-  }, [user, setUserFromToken, navigate]); // Include user, setUserFromToken, and navigate in dependency array
+  }, [user, setUserFromToken, navigate]); 
 
   const [searchTerm, setSearchTerm] = useState('');
   const [companies, setCompanies] = useState([]);

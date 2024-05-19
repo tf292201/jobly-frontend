@@ -13,14 +13,16 @@ const Jobs = () => {
     const authenticateUser = async () => {
       const token = localStorage.getItem('token');
       if (token) {
-        setUserFromToken(token); // Set user from token only if token exists
-      } else {
-        navigate('/login'); // Redirect to login if token doesn't exist
+        setUserFromToken(token); 
+        navigate('/login'); 
       }
     };
     authenticateUser();
-  }, [setUserFromToken, navigate]); // Include setUserFromToken and navigate in dependency array
+  }, [setUserFromToken, navigate]); 
 
+
+  // Fetch jobs from the API
+  
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -31,7 +33,7 @@ const Jobs = () => {
       }
     };
     fetchJobs();
-  }, []); // Make sure this effect runs only once by passing an empty dependency array
+  }, []); 
 
   return (
     <div>

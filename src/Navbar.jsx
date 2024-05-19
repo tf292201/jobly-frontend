@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { useAuth } from './AuthContext'; // Import useAuth hook
+import { useAuth } from './AuthContext';
 
 const Navbar = () => {
-  const { user, logout } = useAuth(); // Destructure user and logout function from AuthContext
-  const navigate = useNavigate(); // Hook for navigation
+  const { user, logout } = useAuth(); 
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
-    logout(); // Logout user
-    navigate('/'); // Navigate user back to the home page
+    logout(); 
+    navigate('/'); 
   };
 
   return (

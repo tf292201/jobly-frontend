@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+// CompanyCard component
+// This component displays a company card with company details
+// It also includes a link to the company details page
 const CompanyCard = ({ company }) => {
   return (
     <Link to={`/companies/${company.handle}`} style={{ textDecoration: 'none', color: 'inherit' }}>

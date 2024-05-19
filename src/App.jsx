@@ -9,12 +9,12 @@ import Companies from './companies/Companies';
 import CompanyDetails from './companies/CompanyDetails';
 import Jobs from './Jobs/Jobs';
 import Profile from './Profile';
-import { AuthProvider } from './AuthContext'; // Import AuthProvider
+import { AuthProvider } from './AuthContext'; 
 
 function App() {
   return (
     <Router>
-      <AuthProvider> {/* Wrap your routes with AuthProvider */}
+      <AuthProvider> 
         <div>
           <Navbar />
           <Routes>

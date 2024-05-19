@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Button } from '@mui/material';
-import JoblyApi from '../JoblyApi'; // Import the JoblyApi class
-import { useAuth } from '../AuthContext'; // Import useAuth hook
+import JoblyApi from '../JoblyApi'; 
+import { useAuth } from '../AuthContext'; 
 
+// JobCard component
+// This component displays a job card with job details and an apply button
 const JobCard = ({ job }) => {
-  const { user } = useAuth(); // Destructure user from useAuth hook
+  const { user } = useAuth(); 
   const [applied, setApplied] = useState(false);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const JobCard = ({ job }) => {
       setApplied(true); // Update local state to indicate job application
     } catch (error) {
       console.error('Error applying for job:', error);
-      // Handle error
+     
     }
   };
 

@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import JoblyApi from '../JoblyApi'; // Import the JoblyApi class
+import JoblyApi from '../JoblyApi';
 import { useParams } from 'react-router-dom';
-import JobCard from '../Jobs/JobCard'; // Import the JobCard component
+import JobCard from '../Jobs/JobCard'; 
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
+
+// CompanyDetail component
+// This component displays company details and a list of jobs at the company
 const CompanyDetail = () => {
-  const { handle } = useParams(); // Extract handle parameter from URL
+  const { handle } = useParams(); 
   const [company, setCompany] = useState(null);
   const navigate = useNavigate();
   const { user } = useAuth();
 
+
+  // Protect the route by checking if user is authenticated
+  // If user is not authenticated, redirect to login
   useEffect(() => {
     if (!user) {
       navigate('/login');

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; // Correct way to import jwt-decode
+import { jwtDecode } from 'jwt-decode'; 
 
 // Create the context
 export const AuthContext = createContext();
@@ -11,7 +11,7 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// Provide the context to your component tree
+// AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   // Value object to be provided by the context
   const value = {
     user,
-    setUserFromToken, // Include setUserFromToken in the context value
+    setUserFromToken, 
     login,
     logout,
   };
